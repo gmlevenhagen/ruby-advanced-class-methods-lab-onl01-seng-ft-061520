@@ -24,8 +24,9 @@ class Song
   end
 
   def self.create_by_name(name)
-    song = self.create
+    song = self.new
     song.name = name
+    @@all << song
     song
   end
 
@@ -34,9 +35,13 @@ class Song
   end
 
   def self.find_or_create_by_name(name)
-    self.find_by_name
-    self.create_by_name
+    if !find_by_name(name)
+      create_by_name(name)
+    else
+      find_by_name(name)
+    end
   end
+
 
   def self.alphabetical()
     @@all.sort_by{|x| x.name}
