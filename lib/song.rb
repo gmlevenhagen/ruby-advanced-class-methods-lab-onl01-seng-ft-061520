@@ -47,18 +47,12 @@ class Song
     @@all.sort_by{|x| x.name}
   end
 
-  def self.new_from_filename(filename)
+  def self.new_from_filename(name)
 
-        row = filename
-
-          data = row.split(" - ")
-          name = data[0]
-          song = data[1].gsub(".mp3", "")
-
-        song = self.new
-        song.name = song
-        song.name = name
-        song
+    song = self.new 
+song.name = (name.split(" - ")[1].chomp(".mp3"))
+song.artist_name = (name.split(" - ")[0])
+song
   end
 
   def self.destroy_all()
