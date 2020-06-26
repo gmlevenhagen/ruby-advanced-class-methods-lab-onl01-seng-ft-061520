@@ -48,8 +48,17 @@ class Song
   end
 
   def self.new_from_filename(name)
-    song = self.new
-    song
+
+        row = name
+
+          data = row.split(" - ")
+          name = data[0]
+          song = data[1].gsub(".mp3", "")
+
+        song = self.new
+        song.name = song
+        song.artist_name = artist_name
+        song
   end
 
   def self.destroy_all()
